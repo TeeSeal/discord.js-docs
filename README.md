@@ -19,11 +19,12 @@ Possible values for `project`: `main`, `commando`, `rpc`.\
 Once a documentation is fetched it will be cached. Use `options.force` to avoid this behavior.
 
 **Params**:
-name   |type  |required
-:-:    |:-:   |:-:
-project|string|yes
-branch |string|yes
-options|object|no
+
+|name   |type  |required|
+|:-----:|:----:|:------:|
+|project|string|yes     |
+|branch |string|yes     |
+|options|object|no      |
 
 **Returns**: `Promise<Doc?>`
 
@@ -35,10 +36,11 @@ const doc = Doc.fetch('main', 'master', { force: true })
 ### Doc#get(parent[, child1[ ...[, childN]]])
 Gets documention for one element. Multiple properties/methods can be chained.
 **Params**:
-name       |type  |required
-:-:        |:-:   |:-:
-parent     |string|yes
-...children|string|no
+
+|name       |type  |required|
+|:---------:|:----:|:------:|
+|parent     |string|yes     |
+|...children|string|no      |
 
 **Returns**: `DocElement?`
 
@@ -52,9 +54,10 @@ doc.get('message', 'guild', 'members')
 Searches the documentation using fuzzy search for the given query and returns top 10 hits.
 
 **Params**:
-name   |type  |required
-:-:    |:-:   |:-:
-query|string|yes
+
+|name   |type  |required|
+|:-----:|:----:|:------:|
+|query  |string|yes     |
 
 **Returns**: `Array<DocElement>?`
 
@@ -62,9 +65,10 @@ query|string|yes
 Tries to resolve the query into a `DocElement` using `Doc#get`. The search terms are expected to be separated by `#` or `.`, example: `message#pin`. If an element cannot be resolved, falls back to `Doc#search`. The result is then formatted into an object representing a Discord embed which can be sent directly to a Discord channel.
 
 **Params**:
-name   |type  |required
-:-:    |:-:   |:-:
-query|string|yes
+
+|name   |type  |required|
+|:-----:|:----:|:------:|
+|query  |string|yes     |
 
 **Returns**: `object?`
 
