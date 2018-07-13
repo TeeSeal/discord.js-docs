@@ -147,9 +147,9 @@ class Doc extends DocBase {
     return `https://github.com/discordjs/${project}/blob/${branch}/`
   }
 
-  static async fetch (project, branch) {
+  static async fetch (project, branch, { force }) {
     const name = `${project}/${branch}`
-    if (docCache.has(name)) return docCache.get(name)
+    if (!force && docCache.has(name)) return docCache.get(name)
 
     const [dev, longProject] = {
       main: ['hydrabolt', 'discord.js'],
