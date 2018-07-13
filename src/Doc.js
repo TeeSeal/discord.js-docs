@@ -147,7 +147,7 @@ class Doc extends DocBase {
     return `https://github.com/discordjs/${project}/blob/${branch}/`
   }
 
-  static async fetch (project, branch, { force }) {
+  static async fetch (project, branch, { force } = {}) {
     const name = `${project}/${branch}`
     if (!force && docCache.has(name)) return docCache.get(name)
 
