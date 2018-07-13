@@ -36,7 +36,7 @@ class DocMethod extends DocElement {
 
     json.returns = { type: returnType }
 
-    if (this.returns.description) {
+    if (this.returns && this.returns.description) {
       json.returns.description = this.returns.description
     }
 
