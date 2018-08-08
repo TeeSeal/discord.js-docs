@@ -43,20 +43,12 @@ class DocElement extends DocBase {
     return this.doc.formatType(this.type)
   }
 
-  get formattedInheritance () {
-    const [inherits, verb] = this.extends
-      ? [this.extends, 'extends']
-      : [this.implements, 'implements']
+  get formattedExtends () {
+    return `(extends ${this.formatInherits(this.extends)})`
+  }
 
-    if (!inherits) return ''
-
-    const formatted = typeof inherits[0] === 'string'
-      // docgen 0.8.0 format
-      ? this.doc.formatType(inherits)
-      // docgen 0.9.0 format
-      : inherits.map(baseClass => this.doc.formatType(flatten(baseClass))).join(' and ')
-
-    return `(${verb} ${formatted})`
+  get formattedImplements () {
+    return `(implements ${this.formatInherits(this.implements)})`
   }
 
   get link () {
@@ -80,7 +72,8 @@ class DocElement extends DocBase {
     const embed = this.doc.baseEmbed()
     let name = `__**${this.link}**__`
 
-    if (this.formattedInheritance) name += ` ${this.formattedInheritance}`
+    if (this.extends) name += ` ${this.formattedExtends}`
+    if (this.implements) name += ` ${this.formattedImplements}`
     if (this.access === 'private') name += ' **PRIVATE**'
 
     embed.description = `${name}\n${this.formatText(this.description)}`
@@ -199,6 +192,14 @@ class DocElement extends DocBase {
         return ' '
       })
       .replace(/<(info|warn)>([^]+?)<\/(?:\1)>/g, '\n**$2**\n')
+  }
+
+  formatInherits (inherits) {
+    inherits = Array.isArray(inherits[0])
+      ? inherits.map(flatten) // docgen 0.9.0 format
+      : inherits.map(baseClass => [baseClass]) // docgen 0.8.0 format
+
+    return inherits.map(baseClass => this.doc.formatType(baseClass)).join(' and ')
   }
 
   static get types () {
