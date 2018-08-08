@@ -151,19 +151,21 @@ class Doc extends DocBase {
     const name = `${project}/${branch}`
     if (!force && docCache.has(name)) return docCache.get(name)
 
-    const [dev, longProject] = {
-      main: ['hydrabolt', 'discord.js'],
-      commando: ['Gawdl3y', 'discord.js-commando'],
-      rpc: ['devsnek', 'discord-rpc']
+    const longProject = {
+      main: 'discord.js',
+      commando: 'discord.js-commando',
+      rpc: 'discord-rpc'
     }[project] || []
-    if (!dev) return null
+    if (!longProject) return null
 
-    const { data } = await fetch(
-      `https://raw.githubusercontent.com/${dev}/${longProject}/docs/${branch}.json`
-    ).catch(() => ({}))
-    if (!data) return null
-
-    return new Doc(name, data)
+    try {
+      const { data } = await fetch(
+        `https://raw.githubusercontent.com/discordjs/${longProject}/docs/${branch}.json`
+      )
+      return new Doc(name, data)
+    } catch (err) {
+      return null
+    }
   }
 }
 
