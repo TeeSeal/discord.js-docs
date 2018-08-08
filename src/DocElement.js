@@ -67,24 +67,28 @@ class DocElement extends DocBase {
     if (this.extends) {
       if(typeof this.extends[0] === 'string') {
         // docgen 0.8.0 format
-        const baseClasses = this.extends.map(baseClass => (this.doc.get(baseClass) || { link: baseClass }).link)
+        const baseClasses = this.extends
+          .map(baseClass => (this.doc.get(baseClass) || { link: baseClass }).link)
         name += ` (extends **${ baseClasses.join('** and **')}**)`
       } else {
-        // docgen 1.0.0 format
-        const baseClasses = this.extends.map(baseClass => flatten(baseClass).map(el => (this.doc.get(el) || { link: el }).link))
-        name += ` (extends **${ baseClasses.map(e=>e.join('')).join('** and **')}**)`
+        // docgen 0.9.0 format
+        const baseClasses = this.extends.map(baseClass => flatten(baseClass)
+          .map(el => (this.doc.get(el) || { link: el }).link))
+        name += ` (extends **${ baseClasses.map(e => e.join('')).join('** and **')}**)`
       }
     }
 
     if (this.implements) {
       if(typeof this.implements[0] === 'string') {
         // docgen 0.8.0 format
-        const baseClasses = this.implements.map(baseClass => (this.doc.get(baseClass) || { link: baseClass }).link)
+        const baseClasses = this.implements
+          .map(baseClass => (this.doc.get(baseClass) || { link: baseClass }).link)
         name += ` (implements **${ baseClasses.join('** and **')}**)`
       } else {
-        // docgen 1.0.0 format
-        const baseClasses = this.implements.map(baseClass => flatten(baseClass).map(el => (this.doc.get(el) || { link: el }).link))
-        name += ` (implements **${ baseClasses.map(e=>e.join('')).join('** and **')}**)`
+        // docgen 0.9.0 format
+        const baseClasses = this.implements
+          .map(baseClass => flatten(baseClass).map(el => (this.doc.get(el) || { link: el }).link))
+        name += ` (implements **${ baseClasses.map(e => e.join('')).join('** and **')}**)`
       }
     }
 
