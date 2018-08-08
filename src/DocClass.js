@@ -7,6 +7,7 @@ class DocClass extends DocElement {
   constructor (doc, data) {
     super(doc, DocElement.types.CLASS, data)
     this.extends = data.extends || null
+    this.implements = data.implements || null
     this.construct = data.construct
 
     this.adoptAll(data.props, DocProp)
