@@ -29,8 +29,8 @@ Once a documentation is fetched it will be cached. Use `options.force` to avoid 
 **Returns**: `Promise<Doc?>`
 
 ```js
-const doc = Doc.fetch('main', 'master')
-const doc = Doc.fetch('main', 'master', { force: true })
+const doc = await Doc.fetch('main', 'master')
+const doc = await Doc.fetch('main', 'master', { force: true })
 ```
 
 ### Doc#get(parent[, child1[ ...[, childN]]])
