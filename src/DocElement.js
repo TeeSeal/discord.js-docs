@@ -43,6 +43,46 @@ class DocElement extends DocBase {
     return this.doc.formatType(this.type)
   }
 
+  get formattedExtends () {
+    if(!this.extends) return '';
+    if(typeof this.extends[0] === 'string') {
+      // docgen 0.8.0 format
+      const baseClasses = this.extends
+        .map(baseClass => (this.doc.get(baseClass) || { link: baseClass }).link)
+      return `(extends **${ baseClasses.join('** and **')}**)`
+    } else {
+      // docgen 0.9.0 format
+      const baseClasses = this.extends
+        .map(baseClass => flatten(baseClass))
+
+      const formatted = baseClasses
+        .map(baseClass =>
+          baseClass.map(el => (this.doc.get(el) || { link: el }).link).join(''))
+
+      return `(extends **${ formatted.join('** and **')}**)`
+    }
+  }
+
+  get formattedImplements () {
+    if(!this.implements) return '';
+    if(typeof this.implements[0] === 'string') {
+      // docgen 0.8.0 format
+      const baseClasses = this.implements
+        .map(baseClass => (this.doc.get(baseClass) || { link: baseClass }).link)
+      return `(implements **${ baseClasses.join('** and **')}**)`
+    } else {
+      // docgen 0.9.0 format
+      const baseClasses = this.implements
+        .map(baseClass => flatten(baseClass))
+
+      const formatted = baseClasses
+        .map(baseClass =>
+          baseClass.map(el => (this.doc.get(el) || { link: el }).link).join(''))
+
+      return `(implements **${ formatted.join('** and **')}**)`
+    }
+  }
+
   get link () {
     return `[${this.formattedName}](${this.url})`
   }
@@ -64,33 +104,9 @@ class DocElement extends DocBase {
     const embed = this.doc.baseEmbed()
     let name = `__**${this.link}**__`
 
-    if (this.extends) {
-      if(typeof this.extends[0] === 'string') {
-        // docgen 0.8.0 format
-        const baseClasses = this.extends
-          .map(baseClass => (this.doc.get(baseClass) || { link: baseClass }).link)
-        name += ` (extends **${ baseClasses.join('** and **')}**)`
-      } else {
-        // docgen 0.9.0 format
-        const baseClasses = this.extends.map(baseClass => flatten(baseClass)
-          .map(el => (this.doc.get(el) || { link: el }).link))
-        name += ` (extends **${ baseClasses.map(e => e.join('')).join('** and **')}**)`
-      }
-    }
+    if (this.extends) name += ' ' + this.formattedExtends;
 
-    if (this.implements) {
-      if(typeof this.implements[0] === 'string') {
-        // docgen 0.8.0 format
-        const baseClasses = this.implements
-          .map(baseClass => (this.doc.get(baseClass) || { link: baseClass }).link)
-        name += ` (implements **${ baseClasses.join('** and **')}**)`
-      } else {
-        // docgen 0.9.0 format
-        const baseClasses = this.implements
-          .map(baseClass => flatten(baseClass).map(el => (this.doc.get(el) || { link: el }).link))
-        name += ` (implements **${ baseClasses.map(e => e.join('')).join('** and **')}**)`
-      }
-    }
+    if (this.implements) name += ' ' + this.formattedImplements;
 
     if (this.access === 'private') name += ' **PRIVATE**'
 
