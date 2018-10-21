@@ -16,6 +16,8 @@ class DocElement extends DocBase {
     this.return = null
     this.examples = null
     this.type = null
+
+    this.deprecated = data.deprecated || false
   }
 
   get url () {
@@ -75,6 +77,7 @@ class DocElement extends DocBase {
     if (this.extends) name += ` ${this.formattedExtends}`
     if (this.implements) name += ` ${this.formattedImplements}`
     if (this.access === 'private') name += ' **PRIVATE**'
+    if (this.deprecated) name += ' **DEPRECATED**'
 
     embed.description = `${name}\n${this.formatText(this.description)}`
     embed.url = this.url
