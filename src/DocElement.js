@@ -134,10 +134,13 @@ class DocElement extends DocBase {
       `
     })
 
-    embed.fields.push({
-      name: 'Params',
-      value: params.join('\n\n')
-    })
+    const slice = params.splice(0, 5)
+    embed.fields.push({ name: 'Params', value: slice.join('\n\n') })
+
+    while (params.length > 0) {
+      const slice = params.splice(0, 5)
+      embed.fields.push({ name: '\u200b', value: slice.join('\n\n') })
+    }
   }
 
   attachReturn (embed) {
