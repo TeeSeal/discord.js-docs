@@ -66,7 +66,7 @@ class DocElement extends DocBase {
 
     return this.type
       .filter(text => /^\w+$/.test(text))
-      .map(text => this.doc.children.get(text.toLowerCase()))
+      .map(text => this.doc.findChild(text.toLowerCase()))
       .find(elem => elem)
   }
 

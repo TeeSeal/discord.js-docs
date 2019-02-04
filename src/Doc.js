@@ -37,14 +37,14 @@ class Doc extends DocBase {
   get (...terms) {
     terms = terms
       .filter(term => term)
-      .map(term => term.toLowerCase().replace(/\(|\)/g, ''))
+      .map(term => term.toLowerCase())
 
-    let elem = this.children.get(terms.shift())
+    let elem = this.findChild(terms.shift())
     if (!elem || !terms.length) return elem || null
 
     while (terms.length) {
       const term = terms.shift()
-      const child = elem.children.get(term)
+      const child = elem.findChild(term)
 
       if (!child) return null
       elem = terms.length && child.typeElement ? child.typeElement : child
@@ -126,7 +126,7 @@ class Doc extends DocBase {
             .join('')
         }
 
-        const typeElem = this.children.get(text.toLowerCase())
+        const typeElem = this.findChild(text.toLowerCase())
         const prependOr = index !== 0 && /\w|>/.test(types[index - 1]) && /\w/.test(text)
 
         return (prependOr ? '|' : '') + (typeElem ? typeElem.link : text)

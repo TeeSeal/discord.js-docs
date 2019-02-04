@@ -15,7 +15,7 @@ class DocBase {
   }
 
   addChild (child) {
-    this.children.set(child.name.toLowerCase(), child)
+    this.children.set(`${child.name.toLowerCase()}-${child.docType}`, child)
   }
 
   adoptAll (enumerable, Constructor) {
@@ -30,6 +30,16 @@ class DocBase {
       .filter(child => child.docType === type)
 
     return filtered.length ? filtered : null
+  }
+
+  findChild (query) {
+    query = query.toLowerCase()
+
+    return Array.from(this.children.values()).find(
+      child => query.endsWith('()')
+        ? child.name.toLowerCase() === query.slice(0, -2) && child.docType === types.METHOD
+        : child.name.toLowerCase() === query
+    )
   }
 
   get classes () {
