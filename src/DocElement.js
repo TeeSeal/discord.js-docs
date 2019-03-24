@@ -21,6 +21,8 @@ class DocElement extends DocBase {
   }
 
   get url () {
+    if (!this.doc.baseDocsURL) return null
+
     const path = this.parent
       ? `${this.parent.docType}/${this.parent.name}?scrollTo=${this.static ? 's-' : ''}${this.name}`
       : `${this.docType}/${this.name}`
@@ -29,6 +31,8 @@ class DocElement extends DocBase {
   }
 
   get sourceURL () {
+    if (!this.doc.repoURL) return null
+
     const { path, file, line } = this.meta
     return `${this.doc.repoURL}/${path}/${file}#L${line}`
   }
