@@ -12,19 +12,18 @@ const Doc = require('discord.js-docs')
 **Warning: all methods will return `null` in case they somehow fail to resolve what you're looking for.**\
 Will probably have them throw an error in the future... maybe..
 
-### Doc.fetch(project, branch[, options])
-Fetches and parses the docs for the given project and branch.\
-Possible values for `project`: `main`, `commando`, `rpc`.\
-`branch` can be any branch name from the respective repositories.\
+### Doc.fetch(sourceName[, options])
+Fetches and parses the docs for the given project.\
+`sourceName` can be any of the predefined values (`stable`, `master`, `commando`, `rpc`, `akairo` and `akairo-master`)
+or an URL which will return the raw generated docs (e.g https://raw.githubusercontent.com/discordjs/discord.js/docs/master.json ).\
 Once a documentation is fetched it will be cached. Use `options.force` to avoid this behavior.
 
 **Params**:
 
-|name   |type  |required|
-|:-----:|:----:|:------:|
-|project|string|yes     |
-|branch |string|yes     |
-|options|object|no      |
+|name       |type  |required|
+|:---------:|:----:|:------:|
+|sourceName |string|yes     |
+|options    |object|no      |
 
 **Returns**: `Promise<Doc?>`
 

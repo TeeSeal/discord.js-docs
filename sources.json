@@ -1,0 +1,8 @@
+{
+  "stable": "https://raw.githubusercontent.com/discordjs/discord.js/docs/stable.json",
+  "master": "https://raw.githubusercontent.com/discordjs/discord.js/docs/master.json",
+  "commando": "https://raw.githubusercontent.com/discordjs/discord.js-commando/docs/master.json",
+  "rpc": "https://raw.githubusercontent.com/discordjs/discord-rpc/docs/master.json",
+  "akairo": "https://raw.githubusercontent.com/discord-akairo/discord-akairo/docs/stable.json",
+  "akairo-master": "https://raw.githubusercontent.com/discord-akairo/discord-akairo/docs/master.json"
+}

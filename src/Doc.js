@@ -1,3 +1,5 @@
+const sources = require('../sources.json')
+
 const Fuse = require('fuse.js')
 const { get: fetch } = require('axios')
 
@@ -30,8 +32,6 @@ class Doc extends DocBase {
       keys: ['name', 'id'],
       id: 'id'
     })
-
-    docCache.set(name, this)
   }
 
   get (...terms) {
@@ -147,24 +147,20 @@ class Doc extends DocBase {
     return `https://github.com/discordjs/${project}/blob/${branch}/`
   }
 
-  static async fetch (project, branch, { force } = {}) {
-    const name = `${project}/${branch}`
-    if (!force && docCache.has(name)) return docCache.get(name)
+  static sources () {
+    return sources
+  }
 
-    const longProject = {
-      main: 'discord.js',
-      commando: 'discord.js-commando',
-      rpc: 'discord-rpc'
-    }[project] || []
-    if (!longProject) return null
+  static async fetch (sourceName, { force } = {}) {
+    if (!force && docCache.has(sourceName)) return docCache.get(sourceName)
 
     try {
-      const { data } = await fetch(
-        `https://raw.githubusercontent.com/discordjs/${longProject}/docs/${branch}.json`
-      )
-      return new Doc(name, data)
+      const { data } = await fetch(sources[sourceName] || sourceName)
+      const doc = new Doc(sourceName, data)
+      docCache.set(sourceName, doc)
+      return doc
     } catch (err) {
-      return null
+      throw new Error('invalid source name or URL.')
     }
   }
 }
