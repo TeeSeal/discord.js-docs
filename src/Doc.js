@@ -64,6 +64,14 @@ class Doc extends DocBase {
     return `${this.baseURL}/static/favicon.ico`
   }
 
+  get color () {
+    switch (this.project) {
+      case DJS: return 0x2296f3
+      case AKAIRO: return 0x87202f
+      default: return null
+    }
+  }
+
   get (...terms) {
     terms = terms
       .filter(term => term)
@@ -137,7 +145,7 @@ class Doc extends DocBase {
     }[this.repo]
 
     return {
-      color: 0x2296f3,
+      color: this.color,
       author: {
         name: `${title} (${this.branch})`,
         url: this.baseDocsURL,
