@@ -9,14 +9,21 @@ const DocTypedef = require('./DocTypedef')
 const DocInterface = require('./DocInterface')
 
 const docCache = new Map()
-const ICON = 'https://i.imgur.com/LM8YCyk.png'
+
+const DJS = 'discordjs'
+const AKAIRO = 'discord-akairo'
+
+function dissectURL (url) {
+  const parts = url.slice(34).split('/')
+  return [parts[0], parts[1], parts[3].slice(0, -5)]
+}
 
 class Doc extends DocBase {
-  constructor (name, docs) {
+  constructor (url, docs) {
     super(docs)
-    this.name = name
-    this.baseURL = `https://discord.js.org/#/docs/${name}/`
-    this.repoURL = Doc.getRepoURL(name)
+    this.url = url
+
+    ;[this.project, this.repo, this.branch] = dissectURL(url)
 
     this.adoptAll(docs.classes, DocClass)
     this.adoptAll(docs.typedefs, DocTypedef)
@@ -32,6 +39,29 @@ class Doc extends DocBase {
       keys: ['name', 'id'],
       id: 'id'
     })
+  }
+
+  get repoURL () {
+    return `https://github.com/${this.project}/${this.repo}/blob/${this.branch}`
+  }
+
+  get baseURL () {
+    switch (this.project) {
+      case DJS: return 'https://discord.js.org'
+      case AKAIRO: return 'https://discord-akairo.github.io'
+      default: return null
+    }
+  }
+
+  get baseDocsURL () {
+    if (!this.baseURL) return null
+    const repo = ['discord.js', AKAIRO].includes(this.repo) ? 'main' : this.repo
+    return `${this.baseURL}/#/docs/${repo}/${this.branch}`
+  }
+
+  get icon () {
+    if (!this.baseURL) return null
+    return `${this.baseURL}/static/favicon.ico`
   }
 
   get (...terms) {
@@ -99,19 +129,19 @@ class Doc extends DocBase {
   }
 
   baseEmbed () {
-    const [project, branch] = this.name.split('/')
     const title = {
-      main: 'Discord.js Docs',
-      commando: 'Commando Docs',
-      rpc: 'RPC Docs'
-    }[project]
+      'discord.js': 'Discord.js Docs',
+      'discord.js-commando': 'Commando Docs',
+      'discord-rpc': 'RPC Docs',
+      'discord-akairo': 'Akairo Docs'
+    }[this.repo]
 
     return {
       color: 0x2296f3,
       author: {
-        name: `${title} (${branch})`,
-        url: this.baseURL,
-        icon_url: ICON
+        name: `${title} (${this.branch})`,
+        url: this.baseDocsURL,
+        icon_url: this.icon
       }
     }
   }
@@ -152,12 +182,13 @@ class Doc extends DocBase {
   }
 
   static async fetch (sourceName, { force } = {}) {
-    if (!force && docCache.has(sourceName)) return docCache.get(sourceName)
+    const url = sources[sourceName] || sourceName
+    if (!force && docCache.has(url)) return docCache.get(url)
 
     try {
-      const { data } = await fetch(sources[sourceName] || sourceName)
-      const doc = new Doc(sourceName, data)
-      docCache.set(sourceName, doc)
+      const { data } = await fetch(url)
+      const doc = new Doc(url, data)
+      docCache.set(url, doc)
       return doc
     } catch (err) {
       throw new Error('invalid source name or URL.')

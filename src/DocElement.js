@@ -25,12 +25,12 @@ class DocElement extends DocBase {
       ? `${this.parent.docType}/${this.parent.name}?scrollTo=${this.static ? 's-' : ''}${this.name}`
       : `${this.docType}/${this.name}`
 
-    return this.doc.baseURL + path
+    return `${this.doc.baseDocsURL}/${path}`
   }
 
   get sourceURL () {
     const { path, file, line } = this.meta
-    return `${this.doc.repoURL}${path}/${file}#L${line}`
+    return `${this.doc.repoURL}/${path}/${file}#L${line}`
   }
 
   get formattedName () {
