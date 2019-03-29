@@ -83,7 +83,7 @@ class DocElement extends DocBase {
     if (this.access === 'private') name += ' **PRIVATE**'
     if (this.deprecated) name += ' **DEPRECATED**'
 
-    embed.description = `${name}\n${this.formatText(this.description)}`
+    embed.description = `${name}\n${this.formatDescription()}`
     embed.url = this.url
     embed.fields = []
     this.formatEmbed(embed)
@@ -189,9 +189,9 @@ class DocElement extends DocBase {
     return json
   }
 
-  formatText (text) {
-    if (!text) return ''
-    return text
+  formatDescription () {
+    if (!this.description) return ''
+    let result = this.description
       .replace(/\{@link (.+?)\}/g, (match, name) => {
         const element = this.doc.get(name)
         return element ? element.link : name
@@ -202,6 +202,13 @@ class DocElement extends DocBase {
         return ' '
       })
       .replace(/<(info|warn)>([^]+?)<\/(?:\1)>/g, '\n**$2**\n')
+
+    if (result.length > 1900) {
+      result = result.slice(0, 1900) +
+        `...\nDescription truncated. View full description [here](${this.url}).`
+    }
+
+    return result
   }
 
   formatInherits (inherits) {
