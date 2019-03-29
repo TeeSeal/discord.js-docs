@@ -2,6 +2,8 @@ const DocBase = require('./DocBase')
 const { stripIndents } = require('common-tags')
 const { flatten } = require('./Util')
 
+const DESCRIPTION_LIMIT = 1500
+
 class DocElement extends DocBase {
   constructor (doc, docType, data, parent) {
     super(data)
@@ -203,8 +205,8 @@ class DocElement extends DocBase {
       })
       .replace(/<(info|warn)>([^]+?)<\/(?:\1)>/g, '\n**$2**\n')
 
-    if (result.length > 1900) {
-      result = result.slice(0, 1900) +
+    if (result.length > DESCRIPTION_LIMIT) {
+      result = result.slice(0, DESCRIPTION_LIMIT) +
         `...\nDescription truncated. View full description [here](${this.url}).`
     }
 
