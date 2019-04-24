@@ -2,6 +2,8 @@
 
 A parser and wrapper for the [discord.js](https://github.com/discordjs/discord.js) docs.
 
+## Documentation below is outdated cba updating nobody uses this except me smh sorry
+
 ## Usage
 
 ### Doc
