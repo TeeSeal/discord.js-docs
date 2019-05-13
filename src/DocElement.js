@@ -15,9 +15,10 @@ class DocElement extends DocBase {
     this.description = data.description
     this.meta = data.meta
 
-    this.return = null
+    this.returns = null
     this.examples = null
     this.type = null
+    this.nullable = null
 
     this.deprecated = data.deprecated || false
   }
@@ -48,7 +49,7 @@ class DocElement extends DocBase {
   }
 
   get formattedType () {
-    return this.doc.formatType(this.type)
+    return `${this.nullable ? '?' : ''}${this.doc.formatType(this.type)}`
   }
 
   get formattedExtends () {

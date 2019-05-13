@@ -7,6 +7,7 @@ class DocProp extends DocElement {
     this.access = data.access || 'public'
     this.scope = data.scope
     this.type = flatten(data.type)
+    this.nullable = data.nullable || false
   }
 
   get formattedName () {
