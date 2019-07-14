@@ -7,9 +7,9 @@
   "author": "TeeSeal <teesealz@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
     "common-tags": "^1.8.0",
-    "fuse.js": "^3.2.1"
+    "fuse.js": "^3.2.1",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "eslint": "^5.1.0",

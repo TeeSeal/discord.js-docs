@@ -1,7 +1,7 @@
 const sources = require('../sources.json')
 
 const Fuse = require('fuse.js')
-const { get: fetch } = require('axios')
+const fetch = require('node-fetch')
 
 const DocBase = require('./DocBase')
 const DocClass = require('./DocClass')
@@ -194,7 +194,7 @@ class Doc extends DocBase {
     if (!force && docCache.has(url)) return docCache.get(url)
 
     try {
-      const { data } = await fetch(url)
+      const data = await fetch(url).then(res => res.json())
       const doc = new Doc(url, data)
       docCache.set(url, doc)
       return doc
