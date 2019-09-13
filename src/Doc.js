@@ -92,7 +92,7 @@ class Doc extends DocBase {
   }
 
   search (query, { excludePrivateElements } = {}) {
-    const result = this.fuse.search(query).slice(0, 10)
+    const result = this.fuse.search(query)
     if (!result.length) return null
 
     const filtered = []
