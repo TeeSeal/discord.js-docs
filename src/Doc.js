@@ -91,17 +91,26 @@ class Doc extends DocBase {
     return elem
   }
 
-  search (query) {
+  search (query, { excludePrivateElements } = {}) {
     const result = this.fuse.search(query).slice(0, 10)
     if (!result.length) return null
-    return result.map(name => this.get(...name.split('#')))
+
+    const filtered = []
+
+    while (result.length > 0 && filtered.length < 10) {
+      const element = this.get(...result.shift().split('#'))
+      if (excludePrivateElements && element.access === 'private') continue
+      filtered.push(element)
+    }
+
+    return filtered
   }
 
-  resolveEmbed (query) {
+  resolveEmbed (query, options = {}) {
     const element = this.get(...query.split(/\.|#/))
-    if (element) return element.embed()
+    if (element) return element.embed(options)
 
-    const searchResults = this.search(query)
+    const searchResults = this.search(query, options)
     if (!searchResults) return null
 
     const embed = this.baseEmbed()

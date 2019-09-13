@@ -77,7 +77,7 @@ class DocElement extends DocBase {
       .find(elem => elem)
   }
 
-  embed () {
+  embed (options = {}) {
     const embed = this.doc.baseEmbed()
     let name = `__**${this.link}**__`
 
@@ -89,7 +89,7 @@ class DocElement extends DocBase {
     embed.description = `${name}\n${this.formatDescription()}`
     embed.url = this.url
     embed.fields = []
-    this.formatEmbed(embed)
+    this.formatEmbed(embed, options)
     embed.fields.push({
       name: '\u200b',
       value: `[View source](${this.sourceURL})`
@@ -98,9 +98,9 @@ class DocElement extends DocBase {
     return embed
   }
 
-  formatEmbed (embed) {
-    this.attachProps(embed)
-    this.attachMethods(embed)
+  formatEmbed (embed, options = {}) {
+    this.attachProps(embed, options)
+    this.attachMethods(embed, options)
     this.attachEvents(embed)
     this.attachParams(embed)
     this.attachType(embed)
@@ -108,19 +108,27 @@ class DocElement extends DocBase {
     this.attachExamples(embed)
   }
 
-  attachProps (embed) {
+  attachProps (embed, { excludePrivateElements } = {}) {
     if (!this.props) return
+
+    let props = this.props
+    if (excludePrivateElements) props = props.filter(prop => prop.access !== 'private')
+
     embed.fields.push({
       name: 'Properties',
-      value: this.props.map(prop => `\`${prop.name}\``).join(' ')
+      value: props.map(prop => `\`${prop.name}\``).join(' ')
     })
   }
 
-  attachMethods (embed) {
+  attachMethods (embed, { excludePrivateElements } = {}) {
     if (!this.methods) return
+
+    let methods = this.methods
+    if (excludePrivateElements) methods = methods.filter(prop => prop.access !== 'private')
+
     embed.fields.push({
       name: 'Methods',
-      value: this.methods.map(method => `\`${method.name}\``).join(' ')
+      value: methods.map(method => `\`${method.name}\``).join(' ')
     })
   }
 
