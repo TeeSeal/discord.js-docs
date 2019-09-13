@@ -6,7 +6,6 @@ class DocMethod extends DocElement {
   constructor (parent, data) {
     super(parent.doc, DocElement.types.METHOD, data, parent)
 
-    this.access = data.access || 'public'
     this.examples = data.examples || null
     this.returns = data.returns
     this.scope = data.scope

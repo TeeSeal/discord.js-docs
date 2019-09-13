@@ -21,6 +21,7 @@ class DocElement extends DocBase {
     this.nullable = null
 
     this.deprecated = data.deprecated || false
+    this.access = data.access || 'public'
   }
 
   get url () {
