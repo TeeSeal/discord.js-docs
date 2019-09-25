@@ -4,5 +4,6 @@
   "commando": "https://raw.githubusercontent.com/discordjs/discord.js-commando/docs/master.json",
   "rpc": "https://raw.githubusercontent.com/discordjs/discord-rpc/docs/master.json",
   "akairo": "https://raw.githubusercontent.com/discord-akairo/discord-akairo/docs/stable.json",
-  "akairo-master": "https://raw.githubusercontent.com/discord-akairo/discord-akairo/docs/master.json"
+  "akairo-master": "https://raw.githubusercontent.com/discord-akairo/discord-akairo/docs/master.json",
+  "collection": "https://raw.githubusercontent.com/discordjs/collection/docs/master.json"
 }
