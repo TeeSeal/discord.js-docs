@@ -150,8 +150,9 @@ class Doc extends DocBase {
       'discord.js': 'Discord.js Docs',
       'discord.js-commando': 'Commando Docs',
       'discord-rpc': 'RPC Docs',
-      'discord-akairo': 'Akairo Docs'
-    }[this.repo]
+      'discord-akairo': 'Akairo Docs',
+      'collection': 'Collection'
+    }[this.repo] || this.repo
 
     return {
       color: this.color,
