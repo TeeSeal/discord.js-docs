@@ -114,6 +114,7 @@ class DocElement extends DocBase {
 
     let props = this.props
     if (excludePrivateElements) props = props.filter(prop => prop.access !== 'private')
+    if (props.length === 0) return
 
     embed.fields.push({
       name: 'Properties',
@@ -126,6 +127,7 @@ class DocElement extends DocBase {
 
     let methods = this.methods
     if (excludePrivateElements) methods = methods.filter(prop => prop.access !== 'private')
+    if (methods.length === 0) return
 
     embed.fields.push({
       name: 'Methods',
