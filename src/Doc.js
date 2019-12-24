@@ -61,7 +61,7 @@ class Doc extends DocBase {
 
   get icon () {
     if (!this.baseURL) return null
-    return `${this.baseURL}/static/favicon.ico`
+    return `${this.baseURL}/favicon.ico`
   }
 
   get color () {
