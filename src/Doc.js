@@ -148,8 +148,8 @@ class Doc extends DocBase {
   baseEmbed () {
     const title = {
       'discord.js': 'Discord.js Docs',
-      'discord.js-commando': 'Commando Docs',
-      'discord-rpc': 'RPC Docs',
+      'commando': 'Commando Docs',
+      'rpc': 'RPC Docs',
       'discord-akairo': 'Akairo Docs',
       'collection': 'Collection'
     }[this.repo] || this.repo
