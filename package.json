@@ -8,7 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "common-tags": "^1.8.0",
-    "fuse.js": "^3.2.1",
+    "fuse.js": "^3.4.6",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
