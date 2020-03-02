@@ -22,7 +22,7 @@ class DocMethod extends DocElement {
 
   get formattedReturn () {
     if (!this.returns) return '**Void**'
-    return [this.doc.formatType(this.flatReturn), this.returns.description]
+    return [this.doc.formatType(this.flatReturn), this.formatText(this.returns.description)]
       .filter(text => text)
       .join('\n')
   }

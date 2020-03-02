@@ -45,8 +45,19 @@ class DocElement extends DocBase {
     return this.name
   }
 
+  get formattedDescription () {
+    let result = this.formatText(this.description)
+
+    if (result.length > DESCRIPTION_LIMIT) {
+      result = result.slice(0, DESCRIPTION_LIMIT) +
+        `...\nDescription truncated. View full description [here](${this.url}).`
+    }
+
+    return result
+  }
+
   get formattedReturn () {
-    return this.returns
+    return this.formatText(this.returns)
   }
 
   get formattedType () {
@@ -87,7 +98,7 @@ class DocElement extends DocBase {
     if (this.access === 'private') name += ' **PRIVATE**'
     if (this.deprecated) name += ' **DEPRECATED**'
 
-    embed.description = `${name}\n${this.formatDescription()}`
+    embed.description = `${name}\n${this.formattedDescription}`
     embed.url = this.url
     embed.fields = []
     this.formatEmbed(embed, options)
@@ -148,7 +159,7 @@ class DocElement extends DocBase {
     const params = this.params.map(param => {
       return stripIndents`
         ${param.formattedName} ${param.formattedType}
-        ${param.description}
+        ${param.formattedDescription}
       `
     })
 
@@ -203,11 +214,20 @@ class DocElement extends DocBase {
     return json
   }
 
-  formatDescription () {
-    if (!this.description) return ''
-    let result = this.description
+  formatInherits (inherits) {
+    inherits = Array.isArray(inherits[0])
+      ? inherits.map(flatten) // docgen 0.9.0 format
+      : inherits.map(baseClass => [baseClass]) // docgen 0.8.0 format
+
+    return inherits.map(baseClass => this.doc.formatType(baseClass)).join(' and ')
+  }
+
+  formatText (text) {
+    if (!text) return ''
+
+    return text
       .replace(/\{@link (.+?)\}/g, (match, name) => {
-        const element = this.doc.get(name)
+        const element = this.doc.get(...name.split(/\.|#/))
         return element ? element.link : name
       })
       .replace(/(```[^]+?```)|(^[*-].+$)?\n(?![*-])/gm, (match, codeblock, hasListBefore) => {
@@ -216,21 +236,9 @@ class DocElement extends DocBase {
         return ' '
       })
       .replace(/<(info|warn)>([^]+?)<\/(?:\1)>/g, '\n**$2**\n')
-
-    if (result.length > DESCRIPTION_LIMIT) {
-      result = result.slice(0, DESCRIPTION_LIMIT) +
-        `...\nDescription truncated. View full description [here](${this.url}).`
-    }
-
-    return result
-  }
-
-  formatInherits (inherits) {
-    inherits = Array.isArray(inherits[0])
-      ? inherits.map(flatten) // docgen 0.9.0 format
-      : inherits.map(baseClass => [baseClass]) // docgen 0.8.0 format
-
-    return inherits.map(baseClass => this.doc.formatType(baseClass)).join(' and ')
+      .replace(/<\/?p>/g, '') // remove paragraph tags
+      .replace(/<\/?code>/g, '`') // format code tags
+      .replace(/<a href="(.+)">(.+)<\/a>/g, '[$2]($1)') // format anchor tags
   }
 
   static get types () {
