@@ -1,6 +1,5 @@
 const DocElement = require('./DocElement')
 const DocParam = require('./DocParam')
-const { flatten } = require('./Util')
 
 class DocMethod extends DocElement {
   constructor (parent, data) {
@@ -17,7 +16,7 @@ class DocMethod extends DocElement {
   }
 
   get flatReturn () {
-    return flatten(this.returns.types || this.returns)
+    return (this.returns.types || this.returns).flat(5)
   }
 
   get formattedReturn () {
@@ -30,7 +29,7 @@ class DocMethod extends DocElement {
   toJSON () {
     const json = super.toJSON()
     const returnType = this.returns
-      ? flatten(this.returns.types || this.returns).join('')
+      ? (this.returns.types || this.returns).flat(5).join('')
       : 'void'
 
     json.returns = { type: returnType }

@@ -1,10 +1,9 @@
 const DocElement = require('./DocElement')
-const { flatten } = require('./Util')
 
 class DocParam extends DocElement {
   constructor (parent, data) {
     super(parent.doc, DocElement.types.PARAM, data, parent)
-    this.type = flatten(data.type)
+    this.type = data.type.flat(5)
     this.optional = data.optional
   }
 

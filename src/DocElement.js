@@ -1,6 +1,5 @@
 const DocBase = require('./DocBase')
 const { stripIndents } = require('common-tags')
-const { flatten } = require('./Util')
 
 const DESCRIPTION_LIMIT = 1500
 
@@ -216,7 +215,7 @@ class DocElement extends DocBase {
 
   formatInherits (inherits) {
     inherits = Array.isArray(inherits[0])
-      ? inherits.map(flatten) // docgen 0.9.0 format
+      ? inherits.map(element => element.flat(5)) // docgen 0.9.0 format
       : inherits.map(baseClass => [baseClass]) // docgen 0.8.0 format
 
     return inherits.map(baseClass => this.doc.formatType(baseClass)).join(' and ')

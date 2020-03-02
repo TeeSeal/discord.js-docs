@@ -1,10 +1,9 @@
 const DocElement = require('./DocElement')
-const { flatten } = require('./Util')
 
 class DocTypedef extends DocElement {
   constructor (doc, data) {
     super(doc, DocElement.types.TYPEDEF, data)
-    this.type = flatten(data.type)
+    this.type = data.type.flat(5)
   }
 }
 
