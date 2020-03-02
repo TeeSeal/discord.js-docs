@@ -15,13 +15,14 @@ class DocMethod extends DocElement {
     return [this.parent.name, this.static ? '.' : '#', this.name, '()'].join('')
   }
 
-  get flatReturn () {
-    return (this.returns.types || this.returns).flat(5)
-  }
-
   get formattedReturn () {
     if (!this.returns) return '**Void**'
-    return [this.doc.formatType(this.flatReturn), this.formatText(this.returns.description)]
+    console.log()
+    const returnTypes = (this.returns.types || this.returns)
+      .map(type => this.doc.formatType(type.flat(5)))
+      .join(' or ')
+
+    return [returnTypes, this.formatText(this.returns.description)]
       .filter(text => text)
       .join('\n')
   }
