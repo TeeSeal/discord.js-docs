@@ -73,6 +73,7 @@ class Doc extends DocBase {
   }
 
   get (...terms) {
+    const exclude = Array.isArray(terms[0]) ? terms.shift() : []
     terms = terms
       .filter(term => term)
       .map(term => term.toLowerCase())
@@ -82,7 +83,7 @@ class Doc extends DocBase {
 
     while (terms.length) {
       const term = terms.shift()
-      const child = elem.findChild(term)
+      const child = elem.findChild(term, exclude)
 
       if (!child) return null
       elem = terms.length && child.typeElement ? child.typeElement : child
@@ -98,7 +99,7 @@ class Doc extends DocBase {
     const filtered = []
 
     while (result.length > 0 && filtered.length < 10) {
-      const element = this.get(...result.shift().split('#'))
+      const element = this.get(filtered, ...result.shift().split('#'))
       if (excludePrivateElements && element.access === 'private') continue
       filtered.push(element)
     }
