@@ -32,14 +32,21 @@ class DocBase {
     return filtered.length ? filtered : null
   }
 
-  findChild (query) {
+  findChild (query, exclude = []) {
     query = query.toLowerCase()
 
-    return Array.from(this.children.values()).find(
-      child => query.endsWith('()')
-        ? child.name.toLowerCase() === query.slice(0, -2) && child.docType === types.METHOD
-        : child.name.toLowerCase() === query
-    )
+    let docType = null
+    if (query.endsWith('()')) {
+      query = query.slice(0, -2)
+      docType = types.METHOD
+    } else if (query.startsWith('e-')) {
+      query = query.slice(2)
+      docType = types.EVENT
+    }
+
+    return Array.from(this.children.values()).find(child => (
+      !exclude.includes(child) && child.name.toLowerCase() === query && (!docType || child.docType === docType)
+    ))
   }
 
   get classes () {

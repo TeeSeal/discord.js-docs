@@ -23,11 +23,17 @@ class DocElement extends DocBase {
     this.access = data.access || 'public'
   }
 
+  get anchor () {
+    if (this.static) return 's-'
+    else if (this.docType === DocElement.types.EVENT) return 'e-'
+    return null
+  }
+
   get url () {
     if (!this.doc.baseDocsURL) return null
 
     const path = this.parent
-      ? `${this.parent.docType}/${this.parent.name}?scrollTo=${this.static ? 's-' : ''}${this.name}`
+      ? `${this.parent.docType}/${this.parent.name}?scrollTo=${this.anchor || ''}${this.name}`
       : `${this.docType}/${this.name}`
 
     return `${this.doc.baseDocsURL}/${path}`
