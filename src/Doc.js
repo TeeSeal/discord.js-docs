@@ -116,7 +116,10 @@ class Doc extends DocBase {
 
     const embed = this.baseEmbed()
     embed.title = 'Search results:'
-    embed.description = searchResults.map(el => `**${el.link}**`).join('\n')
+    embed.description = searchResults.map(el => {
+      const prefix = el.embedPrefix
+      return `${prefix ? `${prefix} ` : ''}**${el.link}**`
+    }).join('\n')
     return embed
   }
 

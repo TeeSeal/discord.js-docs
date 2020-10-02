@@ -23,6 +23,18 @@ class DocElement extends DocBase {
     this.access = data.access || 'public'
   }
 
+  get embedPrefix () {
+    const { types } = DocElement
+    const emoji = char => `:regional_indicator_${char}:`
+
+    if (this.docType === types.EVENT) return emoji('e')
+    else if (this.docType === types.INTERFACE) return emoji('i')
+    else if (this.docType === types.METHOD) return emoji('m')
+    else if (this.docType === types.TYPEDEF) return emoji('t')
+    else if (this.docType === types.CLASS) return emoji('c')
+    return null
+  }
+
   get anchor () {
     if (this.static) return 's-'
     else if (this.docType === DocElement.types.EVENT) return 'e-'
