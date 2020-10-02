@@ -27,12 +27,20 @@ class DocElement extends DocBase {
     const { types } = DocElement
     const emoji = char => `:regional_indicator_${char}:`
 
-    if (this.docType === types.EVENT) return emoji('e')
-    else if (this.docType === types.INTERFACE) return emoji('i')
-    else if (this.docType === types.METHOD) return emoji('m')
-    else if (this.docType === types.TYPEDEF) return emoji('t')
-    else if (this.docType === types.CLASS) return emoji('c')
-    return null
+    switch (this.docType) {
+      case types.CLASS:
+        return emoji('c')
+      case types.EVENT:
+        return emoji('e')
+      case types.INTERFACE:
+        return emoji('i')
+      case types.METHOD:
+        return emoji('m')
+      case types.TYPEDEF:
+        return emoji('t')
+      default:
+        return null
+    }
   }
 
   get anchor () {
