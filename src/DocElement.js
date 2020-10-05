@@ -28,18 +28,12 @@ class DocElement extends DocBase {
     const emoji = char => `:regional_indicator_${char}:`
 
     switch (this.docType) {
-      case types.CLASS:
-        return emoji('c')
-      case types.EVENT:
-        return emoji('e')
-      case types.INTERFACE:
-        return emoji('i')
-      case types.METHOD:
-        return emoji('m')
-      case types.TYPEDEF:
-        return emoji('t')
-      default:
-        return null
+      case types.CLASS: return emoji('c')
+      case types.EVENT: return emoji('e')
+      case types.INTERFACE: return emoji('i')
+      case types.METHOD: return emoji('m')
+      case types.TYPEDEF: return emoji('t')
+      default: return null
     }
   }
 
