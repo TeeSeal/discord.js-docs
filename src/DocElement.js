@@ -33,6 +33,7 @@ class DocElement extends DocBase {
       case types.INTERFACE: return emoji('i')
       case types.METHOD: return emoji('m')
       case types.TYPEDEF: return emoji('t')
+      case types.PROP: return emoji('p')
       default: return null
     }
   }
