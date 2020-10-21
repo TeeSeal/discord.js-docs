@@ -2,8 +2,6 @@
 
 A parser and wrapper for the [discord.js](https://github.com/discordjs/discord.js) docs.
 
-## Documentation below is outdated cba updating nobody uses this except me smh sorry
-
 ## Usage
 
 ### Doc
@@ -11,12 +9,10 @@ A parser and wrapper for the [discord.js](https://github.com/discordjs/discord.j
 ```js
 const Doc = require('discord.js-docs')
 ```
-**Warning: all methods will return `null` in case they somehow fail to resolve what you're looking for.**\
-Will probably have them throw an error in the future... maybe..
 
 ### Doc.fetch(sourceName[, options])
 Fetches and parses the docs for the given project.\
-`sourceName` can be any of the predefined values (`stable`, `master`, `commando`, `rpc`, `akairo` and `akairo-master`)
+`sourceName` can be any of the predefined values (`stable`, `master`, `commando`, `rpc`, `akairo`, `akairo-master` and `collection`)
 or an URL which will return the raw generated docs (e.g https://raw.githubusercontent.com/discordjs/discord.js/docs/master.json ).\
 Once a documentation is fetched it will be cached. Use `options.force` to avoid this behavior.
 
@@ -78,7 +74,20 @@ Tries to resolve the query into a `DocElement` using `Doc#get`. The search terms
 **Returns**: `object?`
 
 ### DocElement
-Cba documenting pls help
+#### Properties:
+- `doc` - the Doc this element originates from;
+- `docType` - the type of this documentation element. One of `class`, `event`, `interface`, `method`, `param`, `prop` and `typedef`;
+- `parent` - parent element if present;
+- `name` - self-explanatory;
+- `description` - self-explanatory;
+- `meta` - any meta information if present;
+- `returns` - the type this element returns, if applicable;
+- `examples` - code examples, if any;
+- `type` - the JS type of this element, if applicable;
+- `nullable` - tells whether this element can be null;
+- `deprecated` - tells whether this element has been deprecated;
+- `access` - access level for this element. Defaults to `public`;
+
 
 
 
