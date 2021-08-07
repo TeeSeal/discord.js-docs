@@ -12,8 +12,8 @@ const Doc = require('discord.js-docs')
 
 ### Doc.fetch(sourceName[, options])
 Fetches and parses the docs for the given project.\
-`sourceName` can be any of the predefined values (`stable`, `master`, `commando`, `rpc`, `akairo`, `akairo-master` and `collection`)
-or an URL which will return the raw generated docs (e.g https://raw.githubusercontent.com/discordjs/discord.js/docs/master.json ).\
+`sourceName` can be any of the predefined values (`stable`, `main`, `commando`, `rpc`, `akairo`, `akairo-master` and `collection`)
+or an URL which will return the raw generated docs (e.g https://raw.githubusercontent.com/discordjs/discord.js/docs/main.json ).\
 Once a documentation is fetched it will be cached. Use `options.force` to avoid this behavior.
 
 **Params**:
@@ -26,7 +26,7 @@ Once a documentation is fetched it will be cached. Use `options.force` to avoid 
 **Returns**: `Promise<Doc?>`
 
 ```js
-const doc = await Doc.fetch('master')
+const doc = await Doc.fetch('main')
 const doc = await Doc.fetch('akairo-master', { force: true })
 const doc = await Doc.fetch(
   'https://raw.githubusercontent.com/discordjs/discord-rpc/docs/master.json',
