@@ -17,7 +17,6 @@ class DocMethod extends DocElement {
 
   get formattedReturn () {
     if (!this.returns) return '**Void**'
-    console.log()
     const returnTypes = (this.returns.types || this.returns)
       .map(type => this.doc.formatType(type.flat(5)))
       .join(' or ')
