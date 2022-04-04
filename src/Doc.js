@@ -190,17 +190,6 @@ class Doc extends DocBase {
     this.branch = parts.slice(-1)[0].split('.')[0]
   }
 
-  static getRepoURL (id) {
-    const [name, branch] = id.split('/')
-    const project = {
-      main: 'discord.js',
-      commando: 'Commando',
-      rpc: 'RPC'
-    }[name]
-
-    return `https://github.com/discordjs/${project}/blob/${branch}/`
-  }
-
   static sources () {
     return sources
   }
