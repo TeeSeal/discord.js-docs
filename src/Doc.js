@@ -13,17 +13,11 @@ const docCache = new Map()
 const DJS = 'discordjs'
 const AKAIRO = 'discord-akairo'
 
-function dissectURL (url) {
-  const parts = url.slice(34).split('/')
-  return [parts[0], parts[1], parts[3].slice(0, -5)]
-}
-
 class Doc extends DocBase {
   constructor (url, docs) {
     super(docs)
     this.url = url
-
-    ;[this.project, this.repo, this.branch] = dissectURL(url)
+    this.assignMetaData()
 
     this.adoptAll(docs.classes, DocClass)
     this.adoptAll(docs.typedefs, DocTypedef)
@@ -55,7 +49,7 @@ class Doc extends DocBase {
 
   get baseDocsURL () {
     if (!this.baseURL) return null
-    const repo = ['discord.js', AKAIRO].includes(this.repo) ? 'main' : this.repo
+    const repo = this.repo === AKAIRO ? 'main' : this.repo
     return `${this.baseURL}/#/docs/${repo}/${this.branch}`
   }
 
@@ -186,6 +180,14 @@ class Doc extends DocBase {
       .join('')
 
     return `**${typestring}**`
+  }
+
+  assignMetaData () {
+    const parts = new URL(this.url).pathname.split('/').slice(1)
+
+    this.project = parts[0]
+    this.repo = this.url.includes(AKAIRO) ? AKAIRO : parts.slice(-2)[0]
+    this.branch = parts.slice(-1)[0].split('.')[0]
   }
 
   static getRepoURL (id) {
