@@ -41,7 +41,7 @@ class Doc extends DocBase {
 
   get baseURL () {
     switch (this.project) {
-      case DJS: return 'https://discord.js.org'
+      case DJS: return 'https://old.discordjs.dev'
       case AKAIRO: return 'https://discord-akairo.github.io'
       default: return null
     }
