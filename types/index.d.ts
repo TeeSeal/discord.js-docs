@@ -105,7 +105,7 @@ export default class Doc extends DocBase {
     public branch: string;
 
     get repoURL(): `https://github.com/${string}/${keyof DocsSources}/blob/${string}`;
-    get baseURL(): "https://discord.js.org" | "https://discord-akairo.github.io" | null;
+    get baseURL(): "https://old.discordjs.dev" | "https://discord-akairo.github.io" | null;
     get baseDocsURL(): `${string}/#/docs/${keyof DocsSources}/${string}` | null;
     get icon(): `${string}/favicon.ico` | null;
     get color(): 0x2296f3 | 0x87202f | null;
