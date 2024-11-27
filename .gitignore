@@ -2,3 +2,4 @@ node_modules
 test.js
 types/test.ts
 .DS_Store
+dist/
