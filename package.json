@@ -8,10 +8,6 @@
   "author": "TeeSeal <teesealz@gmail.com>",
   "license": "MIT",
   "type": "module",
-  "contributors": [
-    "BenjammingKirby",
-    "eirikhanasand"
-  ],
   "scripts": {
     "build": "tsc",
     "format": "eslint --fix ./src",
