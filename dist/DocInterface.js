@@ -1,6 +1,6 @@
-import { DocElement } from "./DocElement";
-import { DocProp } from "./DocProp";
-import { DocMethod } from "./DocMethod";
+import { DocElement } from "./DocElement.js";
+import { DocProp } from "./DocProp.js";
+import { DocMethod } from "./DocMethod.js";
 export class DocInterface extends DocElement {
     constructor(doc, data) {
         super(doc, DocElement.types.INTERFACE, data);

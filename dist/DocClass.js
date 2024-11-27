@@ -1,7 +1,7 @@
-import { DocElement } from "./DocElement";
-import { DocProp } from "./DocProp";
-import { DocMethod } from "./DocMethod";
-import { DocEvent } from "./DocEvent";
+import { DocElement } from "./DocElement.js";
+import { DocProp } from "./DocProp.js";
+import { DocMethod } from "./DocMethod.js";
+import { DocEvent } from "./DocEvent.js";
 export class DocClass extends DocElement {
     construct;
     constructor(doc, data) {

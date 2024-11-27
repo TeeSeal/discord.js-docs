@@ -1,5 +1,5 @@
-import { DocElement } from "./DocElement";
-import { DocParam } from "./DocParam";
+import { DocElement } from "./DocElement.js";
+import { DocParam } from "./DocParam.js";
 export class DocMethod extends DocElement {
     constructor(parent, data) {
         super(parent.doc, DocElement.types.METHOD, data, parent);

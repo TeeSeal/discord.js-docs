@@ -1,4 +1,4 @@
-import { Doc } from "./Doc";
-import sources from "./sources";
+import { Doc } from "./Doc.js";
+import sources from "./sources.js";
 export default Doc;
 export { sources };

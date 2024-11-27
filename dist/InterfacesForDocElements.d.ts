@@ -1,4 +1,4 @@
-import { JSDocAbstract, JSDocAccess, JSDocAsync, JSDocDefault, JSDocDeprecated, JSDocEmits, JSDocExamples, JSDocExtends, JSDocGenerator, JSDocImplements, JSDocReadonly, JSDocReturns, JSDocScope, JSDocSee, JSDocThrows, JSDocVirtual, SplitNameWithAnyType } from "./JsDocTypes";
+import { JSDocAbstract, JSDocAccess, JSDocAsync, JSDocDefault, JSDocDeprecated, JSDocEmits, JSDocExamples, JSDocExtends, JSDocGenerator, JSDocImplements, JSDocReadonly, JSDocReturns, JSDocScope, JSDocSee, JSDocThrows, JSDocVirtual, SplitNameWithAnyType } from "./JsDocTypes.js";
 export type RawDocumentedVarType = SplitNameWithAnyType[] | {
     types: SplitNameWithAnyType[];
     description?: string;

@@ -1,4 +1,4 @@
-import { DocBase } from "./DocBase";
+import { DocBase } from "./DocBase.js";
 import { stripIndents } from "common-tags";
 const DESCRIPTION_LIMIT = 1500;
 export class DocElement extends DocBase {

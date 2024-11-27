@@ -1,4 +1,4 @@
-import { DocElement } from "./DocElement";
+import { DocElement } from "./DocElement.js";
 export class DocParam extends DocElement {
     optional;
     variable;

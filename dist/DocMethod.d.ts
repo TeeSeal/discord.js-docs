@@ -1,6 +1,6 @@
-import { DocElement, DocElementJSON } from "./DocElement";
-import type { DocParentTypes } from "./DocBase";
-import { RawDocumentedFunction } from "./InterfacesForDocElements";
+import { DocElement, DocElementJSON } from "./DocElement.js";
+import type { DocParentTypes } from "./DocBase.js";
+import { RawDocumentedFunction } from "./InterfacesForDocElements.js";
 interface DocMethodJSON extends DocElementJSON {
     returns: {
         type: string;

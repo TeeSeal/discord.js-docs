@@ -1,9 +1,9 @@
-import sourcesJSON from "./sources";
+import sourcesJSON from "./sources.js";
 import Fuse from "fuse.js";
-import { DocBase } from "./DocBase";
-import { DocClass } from "./DocClass";
-import { DocTypedef } from "./DocTypedef";
-import { DocInterface } from "./DocInterface";
+import { DocBase } from "./DocBase.js";
+import { DocClass } from "./DocClass.js";
+import { DocTypedef } from "./DocTypedef.js";
+import { DocInterface } from "./DocInterface.js";
 const sources = sourcesJSON;
 const docCache = new Map();
 const DJS = "discordjs";

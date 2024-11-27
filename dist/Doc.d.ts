@@ -1,8 +1,8 @@
 import Fuse from "fuse.js";
-import { DocAllTypes, DocBase } from "./DocBase";
-import { DocElementJSON, EmbedOptions } from "./DocElement";
-import { APIEmbed } from "./MessageEmbed";
-import { DataJSON } from "./InterfacesForDocElements";
+import { DocAllTypes, DocBase } from "./DocBase.js";
+import { DocElementJSON, EmbedOptions } from "./DocElement.js";
+import { APIEmbed } from "./MessageEmbed.js";
+import { DataJSON } from "./InterfacesForDocElements.js";
 type DocJSON = {
     classes: DocElementJSON[];
     typedefs: DocElementJSON[];

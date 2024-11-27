@@ -1,4 +1,4 @@
-import { DocElement } from "./DocElement";
+import { DocElement } from "./DocElement.js";
 export class DocProp extends DocElement {
     constructor(parent, data) {
         super(parent.doc, DocElement.types.PROP, data, parent);

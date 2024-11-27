@@ -1,8 +1,8 @@
-import { DocAllTypes, DocBase, DocParentTypes, types } from "./DocBase";
-import type { Doc } from "./Doc";
-import { RawDocumentedItemMeta, RawDocumentedClass, RawDocumentedEvent, RawDocumentedInterface, RawDocumentedFunction, RawDocumentedParam, RawDocumentedMember, RawDocumentedTypedef } from "./InterfacesForDocElements";
-import { JSDocDeprecated, JSDocExamples, JSDocAccess, JSDocExtends, JSDocImplements, JSDocScope, JSDocReturns } from "./JsDocTypes";
-import { APIEmbed } from "./MessageEmbed";
+import { DocAllTypes, DocBase, DocParentTypes, types } from "./DocBase.js";
+import type { Doc } from "./Doc.js";
+import { RawDocumentedItemMeta, RawDocumentedClass, RawDocumentedEvent, RawDocumentedInterface, RawDocumentedFunction, RawDocumentedParam, RawDocumentedMember, RawDocumentedTypedef } from "./InterfacesForDocElements.js";
+import { JSDocDeprecated, JSDocExamples, JSDocAccess, JSDocExtends, JSDocImplements, JSDocScope, JSDocReturns } from "./JsDocTypes.js";
+import { APIEmbed } from "./MessageEmbed.js";
 export type RawDocumentedElement = RawDocumentedClass | RawDocumentedEvent | RawDocumentedInterface | RawDocumentedFunction | RawDocumentedParam | RawDocumentedMember | RawDocumentedTypedef;
 export type EmbedOptions = {
     excludePrivateElements?: boolean;
