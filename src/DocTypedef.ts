@@ -1,6 +1,6 @@
-import type { Doc } from "./Doc";
-import { DocElement } from "./DocElement";
-import { RawDocumentedTypedef } from "./InterfacesForDocElements";
+import type { Doc } from "./Doc.js";
+import { DocElement } from "./DocElement.js";
+import { RawDocumentedTypedef } from "./InterfacesForDocElements.js";
 
 export class DocTypedef extends DocElement {
     constructor(doc: Doc, data: RawDocumentedTypedef) {

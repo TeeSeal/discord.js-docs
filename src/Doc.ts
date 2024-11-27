@@ -1,12 +1,12 @@
-import sourcesJSON from "./sources";
+import sourcesJSON from "./sources.js";
 import Fuse from "fuse.js";
-import { DocAllTypes, DocBase } from "./DocBase";
-import { DocElementJSON, EmbedOptions } from "./DocElement";
-import { DocClass } from "./DocClass";
-import { DocTypedef } from "./DocTypedef";
-import { DocInterface } from "./DocInterface";
-import { APIEmbed } from "./MessageEmbed";
-import { DataJSON } from "./InterfacesForDocElements";
+import { DocAllTypes, DocBase } from "./DocBase.js";
+import { DocElementJSON, EmbedOptions } from "./DocElement.js";
+import { DocClass } from "./DocClass.js";
+import { DocTypedef } from "./DocTypedef.js";
+import { DocInterface } from "./DocInterface.js";
+import { APIEmbed } from "./MessageEmbed.js";
+import { DataJSON } from "./InterfacesForDocElements.js";
 
 type DocJSON = {
     classes: DocElementJSON[];

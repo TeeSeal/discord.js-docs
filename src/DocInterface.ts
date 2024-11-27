@@ -1,8 +1,8 @@
-import { DocElement } from "./DocElement";
-import { DocProp } from "./DocProp";
-import { DocMethod } from "./DocMethod";
-import type { Doc } from "./Doc";
-import { RawDocumentedInterface } from "./InterfacesForDocElements";
+import { DocElement } from "./DocElement.js";
+import { DocProp } from "./DocProp.js";
+import { DocMethod } from "./DocMethod.js";
+import type { Doc } from "./Doc.js";
+import { RawDocumentedInterface } from "./InterfacesForDocElements.js";
 
 export class DocInterface extends DocElement {
     constructor(doc: Doc, data: RawDocumentedInterface) {

@@ -1,6 +1,6 @@
-import { DocElement } from "./DocElement";
-import type { DocParentTypes } from "./DocBase";
-import { RawDocumentedParam } from "./InterfacesForDocElements";
+import { DocElement } from "./DocElement.js";
+import type { DocParentTypes } from "./DocBase.js";
+import { RawDocumentedParam } from "./InterfacesForDocElements.js";
 
 export class DocParam extends DocElement {
     public optional: boolean | undefined;

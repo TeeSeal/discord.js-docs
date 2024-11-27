@@ -1,6 +1,6 @@
-import { DocElement } from "./DocElement";
-import type { DocParentTypes } from "./DocBase";
-import { RawDocumentedMember } from "./InterfacesForDocElements";
+import { DocElement } from "./DocElement.js";
+import type { DocParentTypes } from "./DocBase.js";
+import { RawDocumentedMember } from "./InterfacesForDocElements.js";
 
 export class DocProp extends DocElement {
     constructor(parent: DocParentTypes, data: RawDocumentedMember) {

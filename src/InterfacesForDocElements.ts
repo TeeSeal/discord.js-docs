@@ -16,7 +16,7 @@ import {
     JSDocThrows,
     JSDocVirtual,
     SplitNameWithAnyType,
-} from "./JsDocTypes";
+} from "./JsDocTypes.js";
 
 export type RawDocumentedVarType =
     | SplitNameWithAnyType[]

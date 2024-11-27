@@ -1,7 +1,7 @@
-import { DocElement } from "./DocElement";
-import { DocParam } from "./DocParam";
-import type { DocParentTypes } from "./DocBase";
-import { RawDocumentedEvent } from "./InterfacesForDocElements";
+import { DocElement } from "./DocElement.js";
+import { DocParam } from "./DocParam.js";
+import type { DocParentTypes } from "./DocBase.js";
+import { RawDocumentedEvent } from "./InterfacesForDocElements.js";
 
 export class DocEvent extends DocElement {
     constructor(parent: DocParentTypes, data: RawDocumentedEvent) {

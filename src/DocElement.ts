@@ -1,6 +1,6 @@
-import { DocAllTypes, DocBase, DocParentTypes, types } from "./DocBase";
+import { DocAllTypes, DocBase, DocParentTypes, types } from "./DocBase.js";
 import { stripIndents } from "common-tags";
-import type { Doc } from "./Doc";
+import type { Doc } from "./Doc.js";
 import {
     RawDocumentedItemMeta,
     RawDocumentedClass,
@@ -10,7 +10,7 @@ import {
     RawDocumentedParam,
     RawDocumentedMember,
     RawDocumentedTypedef,
-} from "./InterfacesForDocElements";
+} from "./InterfacesForDocElements.js";
 import {
     JSDocDeprecated,
     JSDocExamples,
@@ -19,8 +19,8 @@ import {
     JSDocImplements,
     JSDocScope,
     JSDocReturns,
-} from "./JsDocTypes";
-import { APIEmbed } from "./MessageEmbed";
+} from "./JsDocTypes.js";
+import { APIEmbed } from "./MessageEmbed.js";
 
 export type RawDocumentedElement =
     | RawDocumentedClass

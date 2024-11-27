@@ -1,8 +1,8 @@
-import { DocElement } from "./DocElement";
-import { DocProp } from "./DocProp";
-import { DocMethod } from "./DocMethod";
-import { DocEvent } from "./DocEvent";
-import type { Doc } from "./Doc";
+import { DocElement } from "./DocElement.js";
+import { DocProp } from "./DocProp.js";
+import { DocMethod } from "./DocMethod.js";
+import { DocEvent } from "./DocEvent.js";
+import type { Doc } from "./Doc.js";
 import type { 
     RawDocumentedClass, RawDocumentedConstructor
 } from "./InterfacesForDocElements";
