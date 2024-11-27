@@ -1,0 +1,9 @@
+.gitignore
+.npmignore
+tsconfig.json
+package.json
+package-lock.json
+src
+README.md
+eslint.config.js
+!dist
