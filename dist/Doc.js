@@ -1,4 +1,4 @@
-import sourcesJSON from "./sources.json";
+import sourcesJSON from "./sources";
 import Fuse from "fuse.js";
 import { DocBase } from "./DocBase";
 import { DocClass } from "./DocClass";
