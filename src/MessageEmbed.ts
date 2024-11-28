@@ -1,1 +1,1 @@
-export { APIEmbed } from "discord-api-types/v9";
+export { APIEmbed } from 'discord-api-types/v9';

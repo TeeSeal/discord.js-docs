@@ -19,6 +19,7 @@
     "fuse.js": "^7.0.0"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin-js": "^2.11.0",
     "@types/common-tags": "^1.8.4",
     "eslint": "^9.15.0",
     "prettier": "^3.4.1",
