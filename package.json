@@ -1,23 +1,28 @@
 {
   "name": "discord.js-docs",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A discord.js docs parser and wrapper.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:TeeSeal/discord.js-docs.git",
   "author": "TeeSeal <teesealz@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "common-tags": "^1.8.0",
-    "fuse.js": "^3.4.6",
-    "node-fetch": "^2.6.7"
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "format": "eslint --fix ./src",
+    "prepare": "npm run build"
   },
-  "types": "types/index.d.ts",
+  "dependencies": {
+    "common-tags": "^1.8.2",
+    "discord-api-types": "^0.37.109",
+    "fuse.js": "^7.0.0"
+  },
   "devDependencies": {
-    "eslint": "^5.1.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^3.1.0"
+    "@types/common-tags": "^1.8.4",
+    "eslint": "^9.15.0",
+    "prettier": "^3.4.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.16.0"
   }
 }
