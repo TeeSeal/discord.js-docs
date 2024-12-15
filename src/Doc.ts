@@ -149,7 +149,7 @@ export class Doc extends DocBase {
 			const firstResult = result.shift();
 			if (!firstResult) continue;
 			//@ts-ignore
-			const element = this._getWithExclude(filtered, ...firstResult.split('#'));
+			const element = this._getWithExclude(filtered, ...firstResult.item.name.split("#"));
 			if (excludePrivateElements && element?.access === 'private') continue;
 			if (element) filtered.push(element);
 		}
