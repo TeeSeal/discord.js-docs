@@ -1,6 +1,6 @@
 {
   "name": "discord.js-docs",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A discord.js docs parser and wrapper.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
