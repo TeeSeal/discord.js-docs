@@ -4,7 +4,9 @@
   "description": "A discord.js docs parser and wrapper.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "git@github.com:TeeSeal/discord.js-docs.git",
+  "repository": {
+    "url": "git@github.com:TeeSeal/discord.js-docs.git"
+  },
   "author": "TeeSeal <teesealz@gmail.com>",
   "license": "MIT",
   "type": "module",
